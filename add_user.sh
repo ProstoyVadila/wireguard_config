@@ -39,7 +39,7 @@ fi
 
 # Checking installed wireguard
 if [ ! -d "$CONFIG_PATH" ]; then
-    printf "Cannot find a wireguard folder %s" "$CONFIG_PATH"
+    printf "Cannot find a wireguard folder %s\n" "$CONFIG_PATH"
     exit 1
 fi
 
@@ -55,7 +55,7 @@ if [[ ! -f $CONFIG_FILEPATH ]]; then
 fi
 
 # Copying the server config to backup folder
-BACKUP_SERVER_CONFIG_FILEPATH="$BACKUP_FOLDER/$CONFIG_FILE-$(date +%Y%m%d)"
+BACKUP_SERVER_CONFIG_FILEPATH="$BACKUP_FOLDER/$CONFIG_FILE-$(date +%Y-%m-%d)"
 cp $CONFIG_FILEPATH "$BACKUP_SERVER_CONFIG_FILEPATH"
 
 # Checking server public key existance
@@ -94,7 +94,7 @@ echo "Adding the new client to the server config..."
 {
     printf "\n[Peer]"
     printf "\nPublicKey = %s" "$CLIENT_PUBLIC_KEY"
-    printf "\nAllowIPs = %s" "$CLIENT_ADDRESS"
+    printf "\nAllowIPs = %s\n" "$CLIENT_ADDRESS"
 
 } >>$CONFIG_FILEPATH
 
@@ -115,7 +115,7 @@ touch "$CLIENT_CONFIG_FILEPATH"
     printf "\nPublicKey = %s" "$SERVER_PUBLIC_KEY"
     printf "\nEndpoint = %s" "$ENDPOINT"
     printf "\nAllowedIPs = %s" "$ALLOWED_IPS"
-    printf "\nPersistentKeepalive = %s" "$PERSISTENT_KEEP_ALIVE"
+    printf "\nPersistentKeepalive = %s\n" "$PERSISTENT_KEEP_ALIVE"
 
 } >>"$CLIENT_CONFIG_FILEPATH"
 
@@ -124,5 +124,5 @@ systemctl restart wg-quick@wg0
 systemctl status wg-quick@wg0
 wg show
 
-printf "Successfully added user %s to vpn!" "$1"
-printf "The new client configuration file is here %s" "$CLIENT_CONFIG_FILEPATH"
+printf "Successfully added user %s to vpn!\n" "$1"
+printf "The new client configuration file is here %s\n" "$CLIENT_CONFIG_FILEPATH"

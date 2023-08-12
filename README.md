@@ -16,7 +16,7 @@
 12. Open your client config on your device.
 13. Enjoy your little fictional piece of freedom. ヾ(⌐■_■)ノ ♪
 
-### Install Wireguard
+## Wireguard Installation
 
 ```bash
 apt update && apt -y upgrade
@@ -26,7 +26,7 @@ apt update && apt -y upgrade
 apt install -y wireguard
 ```
 
-### Keys Generation
+## Keys Generation
 
 Don't copy! Use as example.
 
@@ -40,7 +40,7 @@ Don't forget to set rights to your private key.
 chmod 600 /etc/wireguard/<servier_private_key_name>
 ```
 
-### Check Network Configuration
+## Check Network Configuration
 
 ```bash
 ip a
@@ -54,14 +54,14 @@ ifconfig
 
 It is more likely `eth0`. It is used in example [config](wg0.conf). Just set yours.
 
-### Set fastforwarding
+## Set fastforwarding
 
 ```bash
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sysctl -p
 ```
 
-### System deamon
+## System deamon
 
 Enable
 
@@ -104,7 +104,7 @@ Check wireguard stats
 wg show
 ```
 
-### Add Users Script
+## Add Users Script
 
 Give it executable rights for the first time.
 
@@ -117,3 +117,7 @@ To add user:
 ```bash
 ./add_user.sh <user_name>
 ```
+
+## Backups
+
+if something goes wrong you can find a previous version of the server config in `/etc/wireguard/backup` folder
