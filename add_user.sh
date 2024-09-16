@@ -71,7 +71,7 @@ if [ -z "$SERVER_PORT" ]; then
     echo "Cannot find a server port :("
     exit 1
 fi
-ENDPOINT="$SERVER_IP/$SERVER_PORT"
+ENDPOINT="$SERVER_IP:$SERVER_PORT"
 
 # Getting the last part of the last client IP
 IP_ID=$(grep "10.0.0." $CONFIG_FILEPATH -c)
